@@ -1,4 +1,5 @@
 // Styles
+import { Link } from 'react-router-dom';
 import './style.css';
 
 export const Post = ({ item } ) => {
@@ -20,7 +21,9 @@ export const Post = ({ item } ) => {
           <p>{item.localidade}</p>
         </div>
         <div className="bottomside-info__post">
-          <button className="button">Ver imóvel</button>
+          <Link to={`/imovel/${item.id}`}>
+            <button className="button">Ver imóvel</button>
+          </Link>
           <h1>{price}</h1>
         </div>
       </div>

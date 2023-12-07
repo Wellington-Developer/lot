@@ -9,14 +9,15 @@ import { Home } from './Components/Home';
 import { Header } from './Components/Header';
 import { Footer } from './Components/Footer';
 import { FormSelectFilter } from './Components/FormSelectFilter';
+import { PostPage } from './Components/PostPage';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <FormSelectFilter />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/imovel/:id" element={<PostPage />} />
         </Routes>
       <Footer />
     </BrowserRouter>
