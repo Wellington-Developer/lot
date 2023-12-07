@@ -161,8 +161,9 @@
 
   .info-right__header {
     position: absolute;
-    top: 60px;
-    right: 20px;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .info-right__header ul {
