@@ -1,0 +1,33 @@
+.post-section__container {
+  max-width: 346px;
+  margin-top: 30px;
+}
+
+.post-section__container .img-post {
+  width: 100%;
+  height: 300px;
+}
+
+.post-section__container .img-post img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.post-info__section .topside-info__post h1 {
+  font-size: 20px;
+  color: #0B0C12;
+  margin-top: 30px;
+}
+
+.post-info__section .bottomside-info__post {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.post-info__section .bottomside-info__post h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #363B47;
+}

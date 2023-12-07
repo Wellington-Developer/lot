@@ -1,7 +1,12 @@
+// Styles
+import { Posts } from './Posts';
+import './style.css'
+
 export const Home = () => {
   return (
-    <div>
-      <h1>Homepage</h1>
+    <div className="homepage-section__container container">
+      <Posts type={'Locação'}/>
+      <Posts type={'Venda'}/>
     </div>
   )
 };

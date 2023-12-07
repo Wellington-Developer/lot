@@ -8,11 +8,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './Components/Home';
 import { Header } from './Components/Header';
 import { Footer } from './Components/Footer';
+import { FormSelectFilter } from './Components/FormSelectFilter';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
+      <FormSelectFilter />
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
