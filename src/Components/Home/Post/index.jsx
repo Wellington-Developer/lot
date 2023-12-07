@@ -1,20 +1,27 @@
 // Styles
 import './style.css';
 
-export const Post = () => {
+export const Post = ({ item } ) => {
+  console.log(item)
+
+  const price = Number(item.preco).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  })
   return (
     <div className="post-section__container">
       <div className="img-post">
-        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="img" />
+        <img src={item.src} alt="img" />
       </div>
       
       <div className="post-info__section">
         <div className="topside-info__post">
-          <h1>Sobrado semi-mobiliado com 3 quartos</h1>
+          <h1>{item.breve_descricao}</h1>
+          <p>{item.localidade}</p>
         </div>
         <div className="bottomside-info__post">
           <button className="button">Ver imóvel</button>
-          <h1>R$ 1199</h1>
+          <h1>{price}</h1>
         </div>
       </div>
     </div>

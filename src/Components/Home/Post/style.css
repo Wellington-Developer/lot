@@ -1,5 +1,6 @@
 .post-section__container {
-  max-width: 346px;
+  width: 100%;
+  max-width: 360px;
   margin-top: 30px;
 }
 
@@ -20,14 +21,20 @@
   margin-top: 30px;
 }
 
+.post-info__section .topside-info__post p {
+  font-size: 1rem;
+  color: #989EA6;
+}
+
 .post-info__section .bottomside-info__post {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 16px;
 }
 
 .post-info__section .bottomside-info__post h1 {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
   color: #363B47;
 }
