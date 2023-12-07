@@ -2,6 +2,7 @@
   width: 100%;
   max-width: 360px;
   margin-top: 30px;
+  height: 100%;
 }
 
 .post-section__container .img-post {
@@ -17,8 +18,15 @@
 
 .post-info__section .topside-info__post h1 {
   font-size: 20px;
+  font-weight: semi-bold;
+  padding-bottom: 4px;
   color: #0B0C12;
   margin-top: 30px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-info__section .topside-info__post p {
