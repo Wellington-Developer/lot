@@ -16,6 +16,8 @@
 .left-side__register img {
   height: 70vh;
   border-radius: 10px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .right-side__register .info-cadastro {

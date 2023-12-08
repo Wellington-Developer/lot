@@ -32,12 +32,12 @@ export const LoginCreate = () => {
     console.log(response);
   }
 
-  return <div className='animeLeft container-register container'>
+  return <div className='container-register container'>
     <div className="left-side__register">
       <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
     </div>
 
-    <div className="right-side__register">
+    <div className="right-side__register animeLeft">
       <h1>Cadastre-se</h1>
       <form action="" onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username}/>
