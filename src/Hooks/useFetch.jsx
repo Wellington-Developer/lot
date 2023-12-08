@@ -1,10 +1,10 @@
 // React Hooks
-import { useCallback, useEffect } from 'react'
+import { useCallback, useState } from 'react'
 
 export const useFetch = () => {
-  const [ data, setData ] = useEffect(null);
-  const [ error, setError ] = useEffect(null);
-  const [ loading, setLoading ] = useEffect(false)
+  const [ data, setData ] = useState(null);
+  const [ error, setError ] = useState(null);
+  const [ loading, setLoading ] = useState(false)
 
   const request = useCallback(async (url, options) => {
     let response;

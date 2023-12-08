@@ -33,7 +33,7 @@ export const LoginForm = () => {
       <div className="left-side__login">
         <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="imagem banner login"/>
       </div>
-      <div className="right-side__login">
+      <div className="right-side__login animeLeft">
         <h1>Bem vindo de volta</h1>
         <p className="info-login">Preencha com seus dados para logar</p>
 
