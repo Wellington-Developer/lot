@@ -7,6 +7,7 @@ import './style.css';
 // React Icons
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 
 export const Header = () => {
@@ -35,11 +36,35 @@ export const Header = () => {
           </div>
           <div className={!activeMenu ? 'info-right__header active' : 'info-right__header'}>
             <ul>
-              <li><a href="#home">Inicio</a></li>
-              <li><a href="#about">Sobre nós</a></li>
-              <li><a href="#service">Serviço</a></li>
-              <li><a href="#doc">Documentação</a></li>
-              <li><a href="#contact">Contato</a></li>
+                <li>
+                  <Link to="/">
+                    <a href="#home">Inicio</a>
+                  </Link>  
+                </li>
+
+                <li>
+                  <Link to="/about">
+                    <a href="#home">Sobre nós</a>
+                  </Link>  
+                </li>
+
+                <li>
+                  <Link to="/srevices">
+                    <a href="#home">Serviço nós</a>
+                  </Link>  
+                </li>
+
+                <li>
+                  <Link to="/doc">
+                    <a href="#home">Documentação</a>
+                  </Link>  
+                </li>
+
+                <li>
+                  <Link to="/contact">
+                    <a href="#home">Contato</a>
+                  </Link>  
+                </li>
             </ul>
           </div>
 
