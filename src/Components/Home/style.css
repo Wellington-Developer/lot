@@ -1,3 +1,9 @@
 .homepage-section__container {
   margin-top: 550px;
 }
+
+@media screen and (max-width: 800px) {
+  .homepage-section__container {
+    margin-top: calc(-10vh + 70vw);
+  }
+}

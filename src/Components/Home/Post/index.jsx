@@ -1,6 +1,8 @@
 // Styles
-import { Link } from 'react-router-dom';
 import './style.css';
+
+// React Router
+import { Link } from 'react-router-dom';
 
 export const Post = ({ item } ) => {
   console.log(item)
