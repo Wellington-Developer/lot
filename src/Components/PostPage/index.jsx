@@ -42,7 +42,8 @@ export const PostPage = () => {
       <div className="post-page__container container">
         <div className="post-page__intro">
           <div className="post-left__intro">
-            <img src={data.imagens_relacionadas[0]} />
+            <img src={data.src} />
+            <h1>vou puxar as imagens aqui</h1>
           </div>
           <div className="post-right__intro">
             <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
