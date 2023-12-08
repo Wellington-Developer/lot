@@ -23,6 +23,15 @@ a {
   height: 50px;
 }
 
+.contact-info__header a {
+  color: white;
+}
+
+.contact-info__header a > svg {
+  width: 24px;
+  height: 24px;
+}
+
 .contact-info__header p {
   font-size: 1rem;
   color: #FFF;
@@ -63,6 +72,7 @@ a {
 }
 
 .info-container__header ul > li {
+  gap: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,6 +83,12 @@ a {
   transition: all 0.3s ease-in-out;
   font-size: 18px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.info-container__header ul, li, a > svg {
+  margin-left: 8px;
 }
 
 .info-container__header ul > li {

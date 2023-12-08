@@ -5,7 +5,6 @@ import './style.css';
 import { Link } from 'react-router-dom';
 
 export const Post = ({ item } ) => {
-  console.log(item)
 
   const price = Number(item.preco).toLocaleString('pt-BR', {
     style: 'currency',

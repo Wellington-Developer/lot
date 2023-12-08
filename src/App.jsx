@@ -11,19 +11,29 @@ import { Footer } from './Components/Footer';
 import { PostPage } from './Components/PostPage';
 import GoToTop from './Components/GoToTop';
 import { About } from './Components/About';
+import Login from './Components/Login';
+
+// React Context
+import { UserStorage } from './UserContext';
+import { AccountUser } from './Components/AccountUser';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/imovel/:id" element={<PostPage />} />
-        </Routes>
-      <Footer />
-      <GoToTop />
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <UserStorage>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/imovel/:id" element={<PostPage />} />
+            <Route path="/login/*" element={<Login />} />
+            <Route path="/account" element={<AccountUser />} />
+          </Routes>
+          <GoToTop />
+        </UserStorage>
+      </BrowserRouter>
+    </div>
   );
 }
 
