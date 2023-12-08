@@ -50,3 +50,17 @@
 .send-info a {
   font-size: 1rem;
 }
+
+
+@media screen and (max-width: 800px) {
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .left-side__login img {
+    display: none;
+  }
+}

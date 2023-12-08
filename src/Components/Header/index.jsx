@@ -60,7 +60,7 @@ export const Header = () => {
             </Link>
           </div>
           <div className={!activeMenu ? 'info-right__header active' : 'info-right__header'}>
-            <ul>
+            <ul onClick={setActiveMenu}>
                 <li>
                   <Link to="/about">
                     <a href="#home">Sobre nós</a>
