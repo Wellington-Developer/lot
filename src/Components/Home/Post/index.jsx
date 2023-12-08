@@ -14,7 +14,7 @@ export const Post = ({ item } ) => {
   return (
     <div className="post-section__container">
       <div className="img-post">
-        <img src={item.src} alt="img" />
+        <img src={item.imagens_relacionadas[0]} alt="img" />
       </div>
       
       <div className="post-info__section">
