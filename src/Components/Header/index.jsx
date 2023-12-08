@@ -10,10 +10,9 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 
 export const Header = () => {
-  const [activeMenu, setActiveMenu] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(true);
   const handleMenu = () => {
     setActiveMenu(!activeMenu)
-    console.log(activeMenu)
   }
 
   return (
