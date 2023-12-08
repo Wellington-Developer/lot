@@ -10,6 +10,7 @@ import { Header } from './Components/Header';
 import { Footer } from './Components/Footer';
 import { FormSelectFilter } from './Components/FormSelectFilter';
 import { PostPage } from './Components/PostPage';
+import GoToTop from './Components/GoToTop';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/imovel/:id" element={<PostPage />} />
         </Routes>
       <Footer />
+      <GoToTop />
     </BrowserRouter>
   );
 }
