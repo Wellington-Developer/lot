@@ -37,10 +37,17 @@ export const Header = () => {
                 <ul>
                     <li>
                         <Link to="/account">
-                            <a href="#home">{data.username} <FaUser /></a>
+                            {data.username}
+                            <FaUser />
                         </Link>  
                     </li>
                 </ul>
+            }
+            {
+              !login &&
+              <Link to="/login">
+                Logar
+              </Link>
             }
         </div>
       </div>
