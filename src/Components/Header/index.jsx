@@ -59,33 +59,63 @@ export const Header = () => {
               <h1>lotlogo</h1>
             </Link>
           </div>
-          <div className={!activeMenu ? 'info-right__header active' : 'info-right__header'}>
-            <ul onClick={setActiveMenu}>
-                <li>
-                  <Link to="/about">
-                    <a href="#home">Sobre nós</a>
-                  </Link>  
-                </li>
+          
+          {
+            login ?
+            (
+              <div className={!activeMenu ? 'info-right__header active' : 'info-right__header'}>
+                <ul onClick={setActiveMenu}>
+                    <li>
+                      <Link to="/">
+                        <a href="/">Ver postagens</a>
+                      </Link>  
+                    </li>
 
-                <li>
-                  <Link to="/srevices">
-                    <a href="#home">Serviço nós</a>
-                  </Link>  
-                </li>
+                    <li>
+                      <Link to="/account/send-post">
+                        <a href="/">Postar imóvel</a>
+                      </Link>  
+                    </li>
 
-                <li>
-                  <Link to="/doc">
-                    <a href="#home">Documentação</a>
-                  </Link>  
-                </li>
+                    <li>
+                      <Link to="/edit-post">
+                        <a href="#home">Editar imóvel</a>
+                      </Link>  
+                    </li>
+                </ul>
+              </div>
+            )
+            :
+            (
+              <div className={!activeMenu ? 'info-right__header active' : 'info-right__header'}>
+                <ul onClick={setActiveMenu}>
+                    <li>
+                      <Link to="/about">
+                        <a href="#home">Sobre nós</a>
+                      </Link>  
+                    </li>
 
-                <li>
-                  <Link to="/contact">
-                    <a href="#home">Contato</a>
-                  </Link>  
-                </li>
-            </ul>
-          </div>
+                    <li>
+                      <Link to="/srevices">
+                        <a href="#home">Serviço nós</a>
+                      </Link>  
+                    </li>
+
+                    <li>
+                      <Link to="/doc">
+                        <a href="#home">Documentação</a>
+                      </Link>  
+                    </li>
+
+                    <li>
+                      <Link to="/contact">
+                        <a href="#home">Contato</a>
+                      </Link>  
+                    </li>
+                </ul>
+              </div>
+            )
+          }
 
           <div className="menu-icon" onClick={handleMenu}>
             {

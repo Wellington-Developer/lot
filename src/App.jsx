@@ -17,6 +17,9 @@ import Login from './Components/Login';
 import { UserStorage } from './UserContext';
 import { AccountUser } from './Components/AccountUser';
 
+// React Custom Helpers
+import { ProtectedRoutes } from './helpers/ProtectedRoutes';
+
 const App = () => {
   return (
     <div>
@@ -28,7 +31,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/imovel/:id" element={<PostPage />} />
             <Route path="/login/*" element={<Login />} />
-            <Route path="/account" element={<AccountUser />} />
+            <Route path="/account/*" element={<ProtectedRoutes><AccountUser /></ProtectedRoutes>} />
           </Routes>
           <GoToTop />
         </UserStorage>
