@@ -1,3 +1,18 @@
+img {
+  object-fit: cover;
+}
+
+.thumbnails-container {
+  display: flex;
+  gap: 20px;
+}
+
+.thumbnails-container img {
+  max-width: 70px;
+  max-height: 70px;
+  cursor: pointer;
+}
+
 .post-page__intro {
   display: flex;
   gap: 30px;
@@ -8,8 +23,15 @@
   flex: 1;
 }
 
+.post-left__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .post-left__intro img {
   border-radius: 10px;
+  height: 50vh;
 }
 
 .button {

@@ -14,6 +14,11 @@ export const PostPage = () => {
   const { id } = useParams();
 
   const [ data, setData ] = useState([])
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleThumbnailClick = (thumbnail) => {
+    setSelectedImage(thumbnail);
+  };
 
   const fetchData = async () => {
     try {
@@ -22,6 +27,7 @@ export const PostPage = () => {
       if (response.ok) {
         const json = await response.json();
         setData(json.photo);
+
       } else {
         console.error('Erro ao carregar os dados:', response.statusText);
       }
@@ -34,16 +40,29 @@ export const PostPage = () => {
     fetchData()
   }, [])
 
-  console.log(data)
 
   return (
     data ? 
     (
       <div className="post-page__container container">
         <div className="post-page__intro">
-          <div className="post-left__intro">
-            <img src={data.src} />
-            <h1>vou puxar as imagens aqui</h1>
+          <div className="post-left__intro animeLeft">
+            {
+                selectedImage ? 
+                (<img key={selectedImage} src={selectedImage} alt={`Imagem Grande`} />) :
+                (data.imagens_relacionadas && <img src={data.imagens_relacionadas[0]} />)
+            }
+            <div className="thumbnails-container">
+              {data.imagens_relacionadas && data.imagens_relacionadas.map((thumbnail, index) => (
+                <img
+                  key={index}
+                  src={thumbnail}
+                  alt={`Thumbnail ${index}`}
+                  className={`thumbnail ${thumbnail === selectedImage ? 'selected' : ''}`}
+                  onClick={() => handleThumbnailClick(thumbnail)}
+                />
+              ))}
+            </div>
           </div>
           <div className="post-right__intro">
             <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
@@ -63,10 +82,11 @@ export const PostPage = () => {
           <div className="features-left__side">
             <h1>Caracteristicas</h1>
             <ul>
-              <li><MdOutlineVerified />Área de serviço</li>
-              <li><MdOutlineVerified />Cozinha</li>
-              <li><MdOutlineVerified />Sacada</li>
-              <li><MdOutlineVerified />Sala de Jantar</li>
+              {
+                data.features && data.features.split(',').map((item, index) => {
+                  return <li><MdOutlineVerified />{item}</li>
+                })
+              }
             </ul>
           </div>
           <div className="features-right__side">
@@ -106,9 +126,9 @@ export const PostPage = () => {
           <div className="left-side__map">
             <h1>Localidade</h1>
             <ul>
-              <li>Rua Deputado Leoberto Leal</li>
-              <li>123, Guabirotuba</li>
-              <li>Curitiba/PR</li>
+              {
+                data.localidade
+              }
             </ul>
           </div>
 

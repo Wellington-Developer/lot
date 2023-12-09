@@ -12,32 +12,34 @@ export const Post = () => {
   const preco = useForm();
   const titulo = useForm();
   const localidade = useForm();
-  const features = useForm();
   const breve_descricao = useForm();
   const descricao_completa = useForm();
-  const [ imgs, setImgs ] = useState([])
+  const [imgs, setImgs] = useState([]);
+  const [features, setFeatures] = useState([]);
   const { data, error, loading, request } = useFetch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData()
+    const formData = new FormData();
     formData.append('nome', nome.value);
     formData.append('status_do_imovel', status_do_imovel.value);
     formData.append('preco', preco.value);
     formData.append('titulo', titulo.value);
     formData.append('localidade', localidade.value);
-    formData.append('features', features.value);
     formData.append('breve_descricao', breve_descricao.value);
     formData.append('descricao_completa', descricao_completa.value);
-
+  
+    // Enviar features como um array
+    formData.append('features', features.join(','));
+  
     imgs.forEach((img, index) => {
       formData.append(`img${index + 1}`, img);
     });
-
-    const token = window.localStorage.getItem('token')
-    const { url, options } = PHOTO_POST(formData, token)
-    request(url, options)
-  }
+  
+    const token = window.localStorage.getItem('token');
+    const { url, options } = PHOTO_POST(formData, token);
+    request(url, options);
+  };
   
   const handleImgChange = (e) => {
     const selectedImgs = Array.from(e.target.files);
@@ -53,7 +55,13 @@ export const Post = () => {
         <Input label="Titulo" name="titulo" type="text" {...titulo}/>
         <Input label="Localidade" name="localidade" type="text" {...localidade}/>
         <Input label="Breve descricão" name="breve_descricao" type="text" {...breve_descricao}/>
-        <Input label="Features" name="features" type="text" {...features}/>
+        <Input
+          label="Coloque as caracteristicas da casa separadas por virgula"
+          name="features"
+          type="text"
+          value={features.join(',')} // Mostrar as features separadas por vírgula
+          onChange={(e) => setFeatures(e.target.value.split(','))}
+        />
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa}/>
         <div id="arquivos">
           <label for="arquivo">Enviar arquivos</label>
