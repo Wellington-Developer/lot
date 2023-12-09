@@ -3,8 +3,10 @@ import { ButtonForm } from '../../Forms/Button'
 import { useForm } from '../../../Hooks/useForm'
 import { useFetch } from '../../../Hooks/useFetch'
 import { PHOTO_POST } from '../../../api'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './style.css'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../../UserContext'
 
 export const Post = () => {
   const nome = useForm();
@@ -13,16 +15,31 @@ export const Post = () => {
   const titulo = useForm();
   const localidade = useForm();
   const breve_descricao = useForm();
+  const cidade = useForm();
+  const bairro = useForm();
   const descricao_completa = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
   const { data, error, loading, request } = useFetch()
+  const navigate = useNavigate();
+  const [tipo, setTipo] = useState('');
+  const [status, setStatus] = useState('');
+  const tipos = ['Apartamento', 'Casa', 'Sobrado', 'Kitnet', 'Chalé', 'Loft', 'Duplex', 'Triplex', 'Flat', 'Cobertura'];
+  const statusOptions = ['Vendido', 'Disponivel'];
+  const { filterPosts } = useContext(UserContext)
+
+  useEffect(() => {
+    if(data) navigate('/account');
+  }, [data, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nome', nome.value);
-    formData.append('status_do_imovel', status_do_imovel.value);
+    formData.append('cidade', cidade.value);
+    formData.append('bairro', bairro.value);
+    formData.append('tipo', tipo);
+    formData.append('status_do_imovel', status);
     formData.append('preco', preco.value);
     formData.append('titulo', titulo.value);
     formData.append('localidade', localidade.value);
@@ -38,7 +55,10 @@ export const Post = () => {
   
     const token = window.localStorage.getItem('token');
     const { url, options } = PHOTO_POST(formData, token);
-    request(url, options);
+    request(url, options)
+    .then(() => {
+      filterPosts(tipo, cidade.value, bairro.value);
+    })
   };
   
   const handleImgChange = (e) => {
@@ -63,11 +83,38 @@ export const Post = () => {
           onChange={(e) => setFeatures(e.target.value.split(','))}
         />
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa}/>
+        <Input label="Cidade" name="cidade" type="text" {...cidade}/>
+        <Input label="Bairro" name="bairro" type="text" {...bairro}/>
+        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+          <option value="">Selecione o tipo</option>
+          {tipos.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="">Selecione o status</option>
+          {statusOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
         <div id="arquivos">
           <label for="arquivo">Enviar arquivos</label>
           <input type="file" multiple onChange={handleImgChange} name="arquivo" id="arquivo"/>
         </div>
-        <ButtonForm inner="Fazer postagem" />
+        {
+          loading ?
+          (<ButtonForm inner="Enviando post" disabled/>)
+          :
+          (
+          <ButtonForm inner="Fazer postagem" />)
+        }
+        {
+          <p id="error">{error}</p>
+        }
       </form>
     </div>
   )

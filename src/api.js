@@ -62,3 +62,15 @@ export function PHOTO_POST (formData, token) {
     }
   }
 }
+
+export function PHOTO_GET () {
+  return {
+    url: API_URL + '/api/photo',
+    options: {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}

@@ -8,7 +8,6 @@ export const Home = () => {
     <div className="homepage-section__container container">
       <FormSelectFilter />
       <Posts type={'Locação'}/>
-      <Posts type={'Venda'}/>
     </div>
   )
 };

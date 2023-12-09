@@ -19,7 +19,7 @@ export const Post = ({ item } ) => {
       <div className="post-info__section">
         <div className="topside-info__post">
           <h1>{item.breve_descricao}</h1>
-          <p>{item.localidade}</p>
+          <p>{item.cidade} - {item.bairro}</p>
         </div>
         <div className="bottomside-info__post">
           <Link to={`/imovel/${item.id}`}>

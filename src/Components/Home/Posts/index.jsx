@@ -1,20 +1,15 @@
-// Styles
 import './style.css';
-
-// React Components
 import { Post } from '../Post';
-import { useEffect, useState, useRef } from 'react';
-
-// React Icons
+import { useEffect, useState, useRef, useContext } from 'react';
 import { FiArrowRight } from "react-icons/fi";
-
-// Framer motion
 import { motion } from 'framer-motion';
+import { UserContext } from '../../../UserContext';
 
-export const Posts = ({type}) => {
+export const Posts = ({ type }) => {
   const [data, setData] = useState([]);
   const [width, setWidth] = useState(0);
   const carousel = useRef();
+  const { filteredPosts } = useContext(UserContext);
 
   const fetchData = async () => {
     try {
@@ -36,15 +31,10 @@ export const Posts = ({type}) => {
       setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
     };
 
-
-    // Adicione um event listener para atualizar a largura após o carregamento dos posts
     window.addEventListener('resize', updateWidth);
-
-    // Execute a função de atualização da largura após o carregamento dos dados
     updateWidth();
 
     return () => {
-      // Remova o event listener para evitar vazamentos de memória
       window.removeEventListener('resize', updateWidth);
     };
   }, [data]);
@@ -56,14 +46,20 @@ export const Posts = ({type}) => {
   return (
     <div className="posts-section__container">
       <div className="info-posts__drag">
-        <h1 className="title">{type}</h1>
+        <h1 className="title">
+          {filteredPosts && (filteredPosts.length === 1 ? 'Resultado' : type)}
+        </h1>
         <FiArrowRight />
       </div>
       <motion.div ref={carousel} className="carousel" whileTap={{ cursor: "grabbing" }}>
         <motion.div className="posts-wrapper" drag="x" dragConstraints={{ right: 0, left: -width }}>
-          {data && data.map((item, index) => <Post item={item} key={index} />)}
+          {filteredPosts ? (
+            filteredPosts.map((item, index) => <Post item={item} key={index} />)
+          ) : (
+            data.map((item, index) => <Post item={item} key={index} />)
+          )}
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }

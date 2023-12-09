@@ -12,7 +12,6 @@ import { MdOutlineVerified } from "react-icons/md";
 
 export const PostPage = () => {
   const { id } = useParams();
-
   const [ data, setData ] = useState([])
   const [selectedImage, setSelectedImage] = useState(null);
 
