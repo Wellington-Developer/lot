@@ -5,6 +5,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { motion } from 'framer-motion';
 import { UserContext } from '../../../UserContext';
 import { TbInfoTriangleFilled } from "react-icons/tb";
+import { LazyMotion } from 'framer-motion';
 
 export const Posts = ({ type }) => {
   const [data, setData] = useState([]);
@@ -17,7 +18,6 @@ export const Posts = ({ type }) => {
   const carouselVenda = useRef();
   const carouselPesquisa = useRef();
   const { filteredPosts } = useContext(UserContext);
-
 
   const fetchData = async () => {
     try {
@@ -43,73 +43,89 @@ export const Posts = ({ type }) => {
     }
   };
 
+  const updateWidth = () => {
+    setWidthLocacao(carouselLocacao.current?.scrollWidth - carouselLocacao.current?.offsetWidth);
+    setWidthVenda(carouselVenda.current?.scrollWidth - carouselVenda.current?.offsetWidth);
+    setWidthPesquisa(carouselPesquisa.current?.scrollWidth - carouselPesquisa.current?.offsetWidth);
+  };
+
   useEffect(() => {
-    const updateWidth = () => {
-      setWidthLocacao(carouselLocacao.current?.scrollWidth - carouselLocacao.current?.offsetWidth);
-      setWidthVenda(carouselVenda.current?.scrollWidth - carouselVenda.current?.offsetWidth);
-      setWidthPesquisa(carouselPesquisa.current?.scrollWidth - carouselPesquisa.current?.offsetWidth);
+    const handleResize = () => {
+      updateWidth();
     };
 
-    window.addEventListener('resize', updateWidth);
-    updateWidth();
-    filterSections();
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [data, filteredPosts]);
+  }, [filteredPosts, dataVenda, dataLocacao, widthPesquisa]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+    updateWidth();
+    filterSections();
+  }, [data]);
+
+  useEffect(() => {
+    updateWidth();
+    filterSections();
+  }, [data, filteredPosts]);
+
+  const renderPostsCarousel = (carouselRef, data, width) => {
+    return (
+      <motion.div ref={carouselRef} className="carousel">
+        <motion.div
+          className="posts-wrapper"
+          drag={data.length > 1 ? "x" : false}
+          dragConstraints={{ right: 0, left: -width }}
+          dragElastic={0.1}
+          dragMomentum={0.5}
+        >
+          {data.map((item, index) => (
+            <Post item={item} key={index} />
+          ))}
+        </motion.div>
+      </motion.div>
+    );
+  };
 
   return (
     <div>
-      {
-        (filteredPosts && filteredPosts.length == 0) && <p style={{ 'marginBottom': 24, 'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center', 'gap': '12px' }}><TbInfoTriangleFilled />
-        Não encontramos resultado pra sua busca</p>
-      }
+      {filteredPosts && filteredPosts.length === 0 && (
+        <p style={{ 'marginBottom': 24, 'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center', 'gap': '12px' }}>
+          <TbInfoTriangleFilled />
+          Não encontramos resultado pra sua busca
+        </p>
+      )}
+
       {filteredPosts && filteredPosts.length >= 1 && (
         <div className="posts-section__container">
           <div className="info-posts__drag">
             <h1 className="title">
-              {"Resultado da pesquisa"}
+              <div>
+                <h1>Resultado: {filteredPosts[0].locacao_ou_venda === 'Locacao' ? 'Locação' : 'Venda'}</h1>
+              </div>
             </h1>
             <FiArrowRight />
           </div>
-          <motion.div ref={carouselPesquisa} className="carousel" whileTap={{ cursor: "grabbing" }}>
-            <motion.div className="posts-wrapper" drag="x" dragConstraints={{ right: 0, left: -widthPesquisa }}>
-              {filteredPosts.map((item, index) => <Post item={item} key={index} />)}
-            </motion.div>
-          </motion.div>
+          {renderPostsCarousel(carouselPesquisa, filteredPosts, widthPesquisa)}
         </div>
       )}
 
       <div className="posts-section__container">
         <div className="info-posts__drag">
-          <h1 className="title">
-            {dataLocacao.length > 0 && 'Locação'}
-          </h1>
+          <h1 className="title">{dataLocacao.length > 0 && 'Locação'}</h1>
           <FiArrowRight />
         </div>
-        <motion.div ref={carouselLocacao} className="carousel" whileTap={{ cursor: "grabbing" }}>
-          <motion.div className="posts-wrapper" drag="x" dragConstraints={{ right: 0, left: -widthLocacao }}>
-            {dataLocacao.map((item, index) => <Post item={item} key={index} />)}
-          </motion.div>
-        </motion.div>
+        {renderPostsCarousel(carouselLocacao, dataLocacao, widthLocacao)}
       </div>
 
       <div className="posts-section__container">
         <div className="info-posts__drag">
-          <h1 className="title">
-            {dataVenda.length > 0 && 'Venda'}
-          </h1>
+          <h1 className="title">{dataVenda.length > 0 && 'Venda'}</h1>
           <FiArrowRight />
         </div>
-        <motion.div ref={carouselVenda} className="carousel" whileTap={{ cursor: "grabbing" }}>
-          <motion.div className="posts-wrapper" drag="x" dragConstraints={{ right: 0, left: -widthVenda }}>
-            {dataVenda.map((item, index) => <Post item={item} key={index} />)}
-          </motion.div>
-        </motion.div>
+        {renderPostsCarousel(carouselVenda, dataVenda, widthVenda)}
       </div>
     </div>
   );

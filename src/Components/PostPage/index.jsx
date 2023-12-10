@@ -2,18 +2,25 @@
 import './style.css';
 
 // React Hooks
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 // React Icons
 import { FiMapPin } from "react-icons/fi";
 import { MdOutlineVerified } from "react-icons/md";
+import { UserContext } from '../../UserContext';
+import { ButtonForm } from '../Forms/Button'
+import { motion } from 'framer-motion';
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 
 export const PostPage = () => {
+  const container = useRef()
   const { id } = useParams();
   const [ data, setData ] = useState([])
   const [selectedImage, setSelectedImage] = useState(null);
+  const user = useContext(UserContext)
+  const [ widthImages, setWidthImages ] = useState(0)
 
   const handleThumbnailClick = (thumbnail) => {
     setSelectedImage(thumbnail);
@@ -35,9 +42,27 @@ export const PostPage = () => {
     }
   }
 
+  const scrollLeft = () => {
+    // Lógica para rolar para a esquerda (100px)
+    container.current.scrollLeft -= 100;
+  };
+
+  const scrollRight = () => {
+    // Lógica para rolar para a direita (100px)
+    container.current.scrollLeft += 100;
+  };
+
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => {
+    const updateWidth = () => {
+      setWidthImages(container.current?.scrollWidth - container.current?.offsetWidth);
+    };
+
+    updateWidth();
+  }, [data])
 
 
   return (
@@ -51,7 +76,9 @@ export const PostPage = () => {
                 (<img key={selectedImage} src={selectedImage} alt={`Imagem Grande`} />) :
                 (data.imagens_relacionadas && <img src={data.imagens_relacionadas[0]} />)
             }
-            <div className="thumbnails-container">
+            <motion.div ref={container} className="thumbnails-container"
+            whileTap={{ cursor: "grabbing" }}>
+              <motion.div className="posts-wrapper" drag="x" dragConstraints={{ right: 0, left: -widthImages }}>
               {data.imagens_relacionadas && data.imagens_relacionadas.map((thumbnail, index) => (
                 <img
                   key={index}
@@ -61,14 +88,37 @@ export const PostPage = () => {
                   onClick={() => handleThumbnailClick(thumbnail)}
                 />
               ))}
-            </div>
+              </motion.div>
+            </motion.div>
+              {widthImages > 0 && (
+                <div className="container-button__controller">
+                  <button className="scroll-button left" onClick={scrollLeft}>
+                    <FaArrowLeft />
+                  </button>
+                  <button className="scroll-button right" onClick={scrollRight}>
+                    <FaArrowRight />
+                  </button>
+                </div>
+              )}
           </div>
           <div className="post-right__intro">
+            {
+              (user.data && data.author) && (data.author == user.data.username) ?
+              (
+                <Link to={`/account/edit-post/${id}`}>
+                  <ButtonForm inner="Editar post" style={{ 'marginBottom': 30 }}/>
+                </Link>
+              )
+              :
+              (
+                ''
+              )
+            }
             <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL'
             })}</h3>
-            <h1 className="post-title">{data.breve_descricao}</h1>
+            <h1 className="post-title">{data.title}</h1>
             <p className="post-locale">
               <FiMapPin />{data.localidade}</p>
             <p className="post-description">{data.descricao_completa}</p>

@@ -74,3 +74,16 @@ export function PHOTO_GET () {
     }
   }
 }
+
+export const PHOTO_EDIT = (formData, token, postId) => {
+  return {
+      url: API_URL + `/api/photo/edit?post_id=${postId}`,
+      options: {
+          method: 'POST',
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+      },
+  };
+};

@@ -1,8 +1,8 @@
 .container-register {
   display: flex;
   gap: 30px;
-  padding: 0 20px;
   align-items: center;
+  margin-top: 200px;
 }
 
 .left-side__register, .right-side__register {
