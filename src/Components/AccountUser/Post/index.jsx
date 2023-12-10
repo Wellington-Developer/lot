@@ -24,8 +24,10 @@ export const Post = () => {
   const navigate = useNavigate();
   const [tipo, setTipo] = useState('');
   const [status, setStatus] = useState('');
+  const [locacaoOuVenda, setLocacaoOuVenda] = useState('');
   const tipos = ['Apartamento', 'Casa', 'Sobrado', 'Kitnet', 'Chalé', 'Loft', 'Duplex', 'Triplex', 'Flat', 'Cobertura'];
   const statusOptions = ['Vendido', 'Disponivel'];
+  const locacaOuVenda = ['Locacao', 'Venda'];
   const { filterPosts } = useContext(UserContext)
 
   useEffect(() => {
@@ -40,6 +42,7 @@ export const Post = () => {
     formData.append('bairro', bairro.value);
     formData.append('tipo', tipo);
     formData.append('status_do_imovel', status);
+    formData.append('locacao_ou_venda', locacaoOuVenda);
     formData.append('preco', preco.value);
     formData.append('titulo', titulo.value);
     formData.append('localidade', localidade.value);
@@ -98,6 +101,14 @@ export const Post = () => {
           {statusOptions.map((option) => (
             <option key={option} value={option}>
               {option}
+            </option>
+          ))}
+        </select>
+        <select value={locacaoOuVenda} onChange={(e) => setLocacaoOuVenda(e.target.value)}>
+          <option value="">Locação ou Venda?</option>
+          {locacaOuVenda.map((locv) => (
+            <option key={locv} value={locv}>
+              {locv}
             </option>
           ))}
         </select>

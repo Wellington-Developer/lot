@@ -16,7 +16,7 @@ img {
 .post-page__intro {
   display: flex;
   gap: 30px;
-  margin: 60px 0;
+  margin: 200px 0 160px 0;
 }
 
 .post-left__intro, .post-right__intro {

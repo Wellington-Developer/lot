@@ -11,23 +11,28 @@ export const Post = ({ item } ) => {
     currency: 'BRL'
   })
   return (
-    <div className="post-section__container">
-      <div className="img-post">
-        <img src={item.imagens_relacionadas[0]} alt="img" />
-      </div>
-      
-      <div className="post-info__section">
-        <div className="topside-info__post">
-          <h1>{item.breve_descricao}</h1>
-          <p>{item.cidade} - {item.bairro}</p>
+    <div>
+      {
+        item &&
+        <div className="post-section__container">
+          <div className="img-post">
+            <img src={item.imagens_relacionadas[0]} alt="img" />
+          </div>
+          
+          <div className="post-info__section">
+            <div className="topside-info__post">
+              <h1>{item.breve_descricao}</h1>
+              <p>{item.cidade} - {item.bairro}</p>
+            </div>
+            <div className="bottomside-info__post">
+              <Link to={`/imovel/${item.id}`}>
+                <button className="button">Ver imóvel</button>
+              </Link>
+              <h1>{price}</h1>
+            </div>
+          </div>
         </div>
-        <div className="bottomside-info__post">
-          <Link to={`/imovel/${item.id}`}>
-            <button className="button">Ver imóvel</button>
-          </Link>
-          <h1>{price}</h1>
-        </div>
-      </div>
+      }
     </div>
   )
 }

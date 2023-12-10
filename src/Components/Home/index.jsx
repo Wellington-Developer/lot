@@ -1,13 +1,16 @@
 // Styles
-import { FormSelectFilter } from '../FormSelectFilter';
+import { FormFilter } from '../FormFilter';
 import { Posts } from './Posts';
 import './style.css'
 
 export const Home = () => {
   return (
-    <div className="homepage-section__container container">
-      <FormSelectFilter />
+    <div>
+      <FormFilter />
+    <div className="homepage-section__container container" id="posts">
       <Posts type={'Locação'}/>
+    </div>
+
     </div>
   )
 };

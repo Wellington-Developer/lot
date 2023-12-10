@@ -1,5 +1,5 @@
 .container-form__post form {
-  padding: 120px 0;
+  padding: 300px 0;
   gap: 30px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

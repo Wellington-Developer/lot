@@ -84,7 +84,7 @@ export const UserStorage = ({ children }) => {
     }
   };
 
-  const filterPosts = (tipo, cidade, bairro) => {
+  const filterPosts = (tipo, cidade, bairro, tipoNegocio) => {
     if (posts) {
       try {
         setError(null);
@@ -95,6 +95,7 @@ export const UserStorage = ({ children }) => {
           (post) =>
             (cidade === '' || post.cidade === cidade) &&
             (bairro === '' || post.bairro === bairro) &&
+            (tipoNegocio === '' || post.locacao_ou_venda === tipoNegocio) &&
             (tipo === '' || post.tipo === tipo)
         );
 

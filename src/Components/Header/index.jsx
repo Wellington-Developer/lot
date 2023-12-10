@@ -76,12 +76,6 @@ export const Header = () => {
                         <a href="/">Postar imóvel</a>
                       </Link>  
                     </li>
-
-                    <li>
-                      <Link to="/edit-post">
-                        <a href="#home">Editar imóvel</a>
-                      </Link>  
-                    </li>
                 </ul>
               </div>
             )
