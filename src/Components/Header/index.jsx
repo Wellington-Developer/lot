@@ -29,7 +29,7 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="contact-side__header" style={ local.pathname != "/" ? {'background': '#001781'} : {} }>
-        <div className="contact-info__header container">
+        <div className="contact-info__header container" >
           <div className="icons-contact__header">
             <FaFacebook />
             <FaInstagram />

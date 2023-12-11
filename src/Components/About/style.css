@@ -32,7 +32,6 @@
 }
 
 .banner-about h1 {
-  margin-top: 60px;
   color: white;
   font-size: 48px;
   font-weight: 500;
@@ -40,8 +39,8 @@
 }
 
 .feedback-about {
-  margin-top: 500px;
   padding: 60px 20px;
+  margin-top: 600px;
 }
 
 .feedback-about h1 {

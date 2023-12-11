@@ -65,7 +65,7 @@ a {
 */
 
 .info-side__header {
-  background: #FFF;
+  background: rgba(230, 234, 240, 0.80);
 }
 
 .info-container__header {
