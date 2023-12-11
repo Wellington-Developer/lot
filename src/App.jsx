@@ -33,6 +33,7 @@ const App = () => {
             <Route path="/login/*" element={<Login />} />
             <Route path="/account/*" element={<ProtectedRoutes><AccountUser /></ProtectedRoutes>} />
           </Routes>
+          <Footer />
           <GoToTop />
         </UserStorage>
       </BrowserRouter>

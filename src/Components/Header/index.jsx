@@ -93,7 +93,7 @@ export const Header = () => {
                     </li>
 
                     <li>
-                      <Link to="/srevices">
+                      <Link to="/services">
                         <a href="#home">Serviço</a>
                       </Link>  
                     </li>
