@@ -18,6 +18,12 @@ export const Post = () => {
   const cidade = useForm();
   const bairro = useForm();
   const descricao_completa = useForm();
+  const qtd_salas = useForm();
+  const qtd_banheiros = useForm();
+  const qtd_quartos = useForm();
+  const qtd_vagas = useForm();
+  const metros_privativos = useForm();
+  const metros_totais = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
   const { data, error, loading, request } = useFetch()
@@ -48,6 +54,12 @@ export const Post = () => {
     formData.append('localidade', localidade.value);
     formData.append('breve_descricao', breve_descricao.value);
     formData.append('descricao_completa', descricao_completa.value);
+    formData.append('qtd_salas', qtd_salas.value);
+    formData.append('qtd_banheiros', qtd_banheiros.value);
+    formData.append('qtd_quartos', qtd_quartos.value);
+    formData.append('qtd_vagas', qtd_vagas.value);
+    formData.append('metros_privativos', metros_privativos.value);
+    formData.append('metros_totais', metros_totais.value);
   
     // Enviar features como um array
     formData.append('features', features.join(','));
@@ -88,6 +100,12 @@ export const Post = () => {
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa}/>
         <Input label="Cidade" name="cidade" type="text" {...cidade}/>
         <Input label="Bairro" name="bairro" type="text" {...bairro}/>
+        <Input label="Quantidade de salas" name="qtd_salas" type="number" {...qtd_salas}/>
+        <Input label="Quantidade de banheiros" name="qtd_banheiros" type="number" {...qtd_banheiros}/>
+        <Input label="Quantidade de quartos" name="qtd_quartos" type="number" {...qtd_quartos}/>
+        <Input label="Quantidade de vagas na garagem" name="qtd_vagas" type="number" {...qtd_vagas}/>
+        <Input label="Metros privativos totais" name="metros_privativos" type="text" {...metros_privativos}/>
+        <Input label="Metros totais" name="metros_totais" type="text" {...metros_totais}/>
         <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
           <option value="">Selecione o tipo</option>
           {tipos.map((type) => (

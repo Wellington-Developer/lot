@@ -140,27 +140,27 @@ export const PostPage = () => {
           </div>
           <div className="features-right__side">
             <div className="box">
-              <h1>2</h1>
+              <h1>{data.qtd_salas}</h1>
               <p>salas</p>
             </div>
             <div className="box">
-              <h1>3</h1>
+              <h1>{data.qtd_banheiros && data.qtd_banheiros}</h1>
               <p>banheiros</p>
             </div>
             <div className="box">
-              <h1>4</h1>
+              <h1>{data.qtd_quartos && data.qtd_quartos}</h1>
               <p>quartos</p>
             </div>
             <div className="box">
-              <h1>2</h1>
+              <h1>{data.qtd_vagas && data.qtd_vagas}</h1>
               <p>vagas</p>
             </div>
             <div className="box">
-              <h1>147m</h1>
+              <h1>{data.metros_privativos && data.metros_privativos}</h1>
               <p>privativos</p>
             </div>
             <div className="box">
-              <h1>250m</h1>
+              <h1>{data.metros_totais && data.metros_totais}</h1>
               <p>totais</p>
             </div>
           </div>

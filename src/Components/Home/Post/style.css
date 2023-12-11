@@ -20,6 +20,10 @@
   pointer-events: none;
 }
 
+.topside-info__post {
+  padding: 0 20px;
+}
+
 .post-info__section .topside-info__post h1 {
   font-size: 20px;
   font-weight: semi-bold;
@@ -46,9 +50,13 @@
 }
 
 .post-info__section .bottomside-info__post h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: #363B47;
+}
+
+.bottomside-info__post {
+  padding: 0 20px;
 }
 
 @media screen and (max-width: 800px) {

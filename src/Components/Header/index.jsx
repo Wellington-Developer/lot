@@ -6,27 +6,30 @@ import './style.css';
 
 // React Icons
 import { FaFacebook, FaInstagram, FaWhatsapp, FaUser } from "react-icons/fa";
+import { FaUnlockKeyhole } from "react-icons/fa6";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // React Context
 import { UserContext } from '../../UserContext';
 
+// Logo
+import Logo from '../../assets/logos/logo.png'
 
 export const Header = () => {
   const [activeMenu, setActiveMenu] = useState(true);
   const handleMenu = () => {
     setActiveMenu(!activeMenu)
   }
+  const local = useLocation()
 
   const { data, login } = useContext(UserContext)
 
 
   return (
     <header className="header">
-      <div className="contact-side__header">
+      <div className="contact-side__header" style={ local.pathname != "/" ? {'background': '#001781'} : {} }>
         <div className="contact-info__header container">
-          <p>(012) 98840-4216</p>
           <div className="icons-contact__header">
             <FaFacebook />
             <FaInstagram />
@@ -46,7 +49,7 @@ export const Header = () => {
             {
               !login &&
               <Link to="/login">
-                Logar
+                <FaUnlockKeyhole />
               </Link>
             }
         </div>
@@ -56,7 +59,7 @@ export const Header = () => {
         <div className="info-container__header container">
           <div className="info-left__header">
             <Link to="/">
-              <h1>lotlogo</h1>
+              <img src={Logo} />
             </Link>
           </div>
           
@@ -91,7 +94,7 @@ export const Header = () => {
 
                     <li>
                       <Link to="/srevices">
-                        <a href="#home">Serviço nós</a>
+                        <a href="#home">Serviço</a>
                       </Link>  
                     </li>
 

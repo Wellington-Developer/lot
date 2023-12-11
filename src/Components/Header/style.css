@@ -7,6 +7,10 @@
   right: 0;
 }
 
+.info-left__header img {
+  max-width: 100px;
+}
+
 a {
   word-wrap: normal;
 }
@@ -15,6 +19,7 @@ a {
   TOP SIDE CONTACT INFO
 */
 .contact-side__header {
+  border-bottom: 2px solid red;
   background: rgba(0, 23, 129, 0.30);
   box-shadow: 0px 4px 4px 0px rgba(0, 23, 129, 0.20) inset;
 }
