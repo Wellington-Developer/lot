@@ -5,18 +5,18 @@ footer {
   background: #001781;
 }
 
-h1 {
+footer h1 {
   margin-bottom: 12px;
   font-weight: 500;
 }
 
-ul {
+footer ul {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-li, a {
+footer li, footer a {
   color: #E6EAF0;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@ li, a {
   font-weight: 400;
 }
 
-li:hover, a:hover {
+footer li:hover, footer a:hover {
   color: #C0C5CC;
   cursor: pointer;
 }
