@@ -21,6 +21,7 @@ export const Header = () => {
   const handleMenu = () => {
     setActiveMenu(!activeMenu)
   }
+  const [ servicesMenu, setServicesMenu ] = useState(!false)
   const local = useLocation()
 
   const { data, login } = useContext(UserContext)
@@ -92,10 +93,22 @@ export const Header = () => {
                       </Link>  
                     </li>
 
-                    <li>
-                      <Link to="/services">
-                        <a href="#home">Serviço</a>
-                      </Link>  
+                    <li id="link-service__container" onClick={() => setServicesMenu(!servicesMenu)}>
+                      <a href="#">Serviços</a>
+
+                      <div className={servicesMenu ? 'links-services active' : 'links-services'}>
+                        <ul onClick={() => setServicesMenu(!servicesMenu)}>
+                          <Link to="/vendas">
+                          <li>Vendas</li>
+                          </Link>
+                          <Link to="/locacao">
+                          <li>Locação</li>
+                          </Link>
+                          <Link to="/simulacao">
+                          <li>Financiamento</li>
+                          </Link>
+                        </ul>
+                      </div>
                     </li>
 
                     <li>

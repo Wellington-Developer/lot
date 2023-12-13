@@ -58,6 +58,31 @@ a {
   color: #FFF;
 }
 
+#link-service__container {
+  position: relative;
+}
+
+.links-services {
+  position: absolute;
+  top: 40px;
+  background: white;
+  border-radius: 10px;
+}
+
+.links-services {
+  display: none;
+}
+
+.links-services, .active {
+  display: flex;
+  z-index: 999;
+}
+
+.links-services li {
+  display: flex;
+  word-wrap: normal;
+  padding: 8px;
+}
 
 
 /*

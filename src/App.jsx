@@ -19,6 +19,9 @@ import { AccountUser } from './Components/AccountUser';
 
 // React Custom Helpers
 import { ProtectedRoutes } from './helpers/ProtectedRoutes';
+import { Vendas } from './Components/Vendas';
+import { Locacao } from './Components/Locacao';
+import { Simulacao } from './Components/Simulacao';
 
 const App = () => {
   return (
@@ -32,6 +35,9 @@ const App = () => {
             <Route path="/imovel/:id" element={<PostPage />} />
             <Route path="/login/*" element={<Login />} />
             <Route path="/account/*" element={<ProtectedRoutes><AccountUser /></ProtectedRoutes>} />
+            <Route path="/vendas" element={ <Vendas /> } />
+            <Route path="/locacao" element={ <Locacao /> } />
+            <Route path="/simulacao" element={ <Simulacao /> } />
           </Routes>
           <Footer />
           <GoToTop />
