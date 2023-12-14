@@ -148,8 +148,8 @@ export const EditPost = () => {
           label="Informações abaixo do preço, separe por traço(-)"
           name="features"
           type="text"
-          value={textoAdicional.join('-')}
-          onChange={(e) => setTextoAdicional(e.target.value.split('-'))}
+          value={textoAdicional}
+          onChange={(e) => setTextoAdicional(e.target.value)}
         />
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa} />
         <Input label="Cidade" name="cidade" type="text" {...cidade} />
