@@ -58,7 +58,7 @@ img {
 .post-page__intro {
   display: flex;
   gap: 30px;
-  margin: 200px 0 160px 0;
+  margin: 200px auto 160px auto;
 }
 
 .post-left__intro, .post-right__intro {
@@ -201,7 +201,8 @@ img {
 .features-post__container {
   display: flex;
   gap: 30px;
-  padding: 120px 0;
+  padding: 60px 0;
+  background: #F5F7FA;
 }
 
 .features-left__side, .features-right__side {
@@ -239,7 +240,7 @@ img {
 }
 
 .complete-description__section {
-  margin: 120px 0;
+  margin: 120px auto;
 }
 
 .complete-description__section h1 {

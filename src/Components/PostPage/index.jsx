@@ -73,8 +73,8 @@ export const PostPage = () => {
   return (
     data ? 
     (
-      <div className="post-page__container container">
-        <div className="post-page__intro">
+      <div className="post-page__container">
+        <div className="post-page__intro container">
           <div className="post-left__intro animeLeft">
             {
                 selectedImage ? 
@@ -174,50 +174,54 @@ export const PostPage = () => {
         </div>
 
         <div className="features-post__container" id="features">
-          <div className="features-left__side">
-            <h1>Caracteristicas</h1>
-            <ul>
-              {
-                data.features && data.features.split(',').map((item, index) => {
-                  return <li><MdOutlineVerified />{item}</li>
-                })
-              }
-            </ul>
-          </div>
-          <div className="features-right__side">
-            <div className="box">
-              <h1>{data.qtd_salas}</h1>
-              <p>salas</p>
+          <div className="container">
+            <div className="features-post__container">
+              <div className="features-left__side">
+              <h1>Caracteristicas</h1>
+              <ul>
+                {
+                  data.features && data.features.split(',').map((item, index) => {
+                    return <li><MdOutlineVerified />{item}</li>
+                  })
+                }
+              </ul>
             </div>
-            <div className="box">
-              <h1>{data.qtd_banheiros && data.qtd_banheiros}</h1>
-              <p>banheiros</p>
+            <div className="features-right__side">
+              <div className="box">
+                <h1>{data.qtd_salas}</h1>
+                <p>salas</p>
+              </div>
+              <div className="box">
+                <h1>{data.qtd_banheiros && data.qtd_banheiros}</h1>
+                <p>banheiros</p>
+              </div>
+              <div className="box">
+                <h1>{data.qtd_quartos && data.qtd_quartos}</h1>
+                <p>quartos</p>
+              </div>
+              <div className="box">
+                <h1>{data.qtd_vagas && data.qtd_vagas}</h1>
+                <p>vagas</p>
+              </div>
+              <div className="box">
+                <h1>{data.metros_privativos && data.metros_privativos}</h1>
+                <p>privativos</p>
+              </div>
+              <div className="box">
+                <h1>{data.metros_totais && data.metros_totais}</h1>
+                <p>totais</p>
+              </div>
             </div>
-            <div className="box">
-              <h1>{data.qtd_quartos && data.qtd_quartos}</h1>
-              <p>quartos</p>
-            </div>
-            <div className="box">
-              <h1>{data.qtd_vagas && data.qtd_vagas}</h1>
-              <p>vagas</p>
-            </div>
-            <div className="box">
-              <h1>{data.metros_privativos && data.metros_privativos}</h1>
-              <p>privativos</p>
-            </div>
-            <div className="box">
-              <h1>{data.metros_totais && data.metros_totais}</h1>
-              <p>totais</p>
             </div>
           </div>
         </div>
       
-        <div className="complete-description__section">
+        <div className="complete-description__section container">
           <h1>Descrição completa</h1>
           <p>{data.descricao_completa}</p>
         </div>
 
-        <div className="map-post__section">
+        <div className="map-post__section container">
           <div className="left-side__map">
             <h1>Localidade</h1>
             <ul>
