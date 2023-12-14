@@ -11,13 +11,15 @@ import { MdOutlineVerified } from "react-icons/md";
 import { UserContext } from '../../UserContext';
 import { ButtonForm } from '../Forms/Button'
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight, FaArrowLeft, FaInfoCircle } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 
 export const PostPage = () => {
   const container = useRef()
   const { id } = useParams();
   const [ data, setData ] = useState([])
+  const [ modal, setModal ] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null);
   const user = useContext(UserContext)
   const [ widthImages, setWidthImages ] = useState(0)
@@ -25,6 +27,10 @@ export const PostPage = () => {
   const handleThumbnailClick = (thumbnail) => {
     setSelectedImage(thumbnail);
   };
+
+  const handleModal = () => {
+    setModal(!modal)
+  }
 
   const fetchData = async () => {
     try {
@@ -114,10 +120,20 @@ export const PostPage = () => {
                 ''
               )
             }
+            <div className="post-info__title">
             <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL'
             })}</h3>
+            <FaInfoCircle onClick={handleModal} />
+            <div className={ modal ? 'modal activeModal' : 'modal' }>
+              <div className="modal-inner">
+              <FaXmark onClick={handleModal} />
+              <h1>{data.informacao_adicional_titulo}</h1>
+              <p>{data.informacao_adicional_paragrafo}</p>
+              </div>
+            </div>
+            </div>
             <h1 className="post-title">{data.title}</h1>
             <p className="post-locale">
               <FiMapPin />{data.localidade}</p>

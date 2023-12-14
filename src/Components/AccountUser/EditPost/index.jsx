@@ -27,6 +27,8 @@ export const EditPost = () => {
   const qtd_vagas = useForm();
   const metros_privativos = useForm();
   const metros_totais = useForm();
+  const informacao_adicional_titulo = useForm();
+  const informacao_adicional_paragrafo = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
   const { error, loading, request } = useFetch();
@@ -58,6 +60,8 @@ export const EditPost = () => {
     formData.append('qtd_vagas', qtd_vagas.value);
     formData.append('metros_privativos', metros_privativos.value);
     formData.append('metros_totais', metros_totais.value);
+    formData.append('informacao_adicional_titulo', informacao_adicional_titulo.value);
+    formData.append('informacao_adicional_paragrafo', informacao_adicional_paragrafo.value);
 
     formData.append('features', features.join(','));
 
@@ -104,6 +108,8 @@ export const EditPost = () => {
         qtd_quartos.setValue(filteredPost.qtd_quartos);
         metros_privativos.setValue(filteredPost.metros_privativos);
         metros_totais.setValue(filteredPost.metros_totais);
+        informacao_adicional_titulo.setValue(filteredPost.informacao_adicional_titulo);
+        informacao_adicional_paragrafo.setValue(filteredPost.informacao_adicional_paragrafo);
         setFeatures(filteredPost.features.split(','));
 
         setTipo(filteredPost.tipo);
@@ -142,6 +148,8 @@ export const EditPost = () => {
         <Input label="Quantidade de vagas na garagem" name="qtd_vagas" type="number" {...qtd_vagas}/>
         <Input label="Metros privativos totais" name="metros_privativos" type="text" {...metros_privativos}/>
         <Input label="Metros totais" name="metros_totais" type="text" {...metros_totais}/>
+        <Input label="Titulo informações adicionais" name="informacao_adicional_titulo" type="text" {...informacao_adicional_titulo}/>
+        <Input label="Paragrafo informações adicionais" name="informacao_adicional_paragrafo" type="text" {...informacao_adicional_paragrafo}/>
         <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
           <option value="">Selecione o tipo</option>
           {tipos.map((type) => (
