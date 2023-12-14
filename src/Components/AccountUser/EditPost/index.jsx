@@ -115,7 +115,7 @@ export const EditPost = () => {
   
         // Verificar se as propriedades existem antes de chamar split
         setFeatures(filteredPost.features ? filteredPost.features.split(',') : []);
-        setTextoAdicional(filteredPost.texto_adicional ? filteredPost.texto_adicional.split('-') : []);
+        setTextoAdicional(filteredPost.texto_adicional ? filteredPost.texto_adicional : []);
   
         setTipo(filteredPost.tipo);
         setStatus(filteredPost.status);
