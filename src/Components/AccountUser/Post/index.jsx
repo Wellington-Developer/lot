@@ -28,6 +28,7 @@ export const Post = () => {
   const informacao_adicional_paragrafo = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
+  const [textoAdicional, SetTextoAdicional] = useState([]);
   const { data, error, loading, request } = useFetch()
   const navigate = useNavigate();
   const [tipo, setTipo] = useState('');
@@ -67,6 +68,7 @@ export const Post = () => {
   
     // Enviar features como um array
     formData.append('features', features.join(','));
+    formData.append('texto_adicional', textoAdicional);
   
     imgs.forEach((img, index) => {
       formData.append(`img${index + 1}`, img);
@@ -100,6 +102,13 @@ export const Post = () => {
           type="text"
           value={features.join(',')} // Mostrar as features separadas por vírgula
           onChange={(e) => setFeatures(e.target.value.split(','))}
+        />
+        <Input
+          label="Texto adicional em baixo de valor."
+          name="texto_adicional"
+          type="text"
+          value={textoAdicional} // Mostrar as features separadas por vírgula
+          onChange={(e) => SetTextoAdicional(e.target.value)}
         />
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa}/>
         <Input label="Cidade" name="cidade" type="text" {...cidade}/>

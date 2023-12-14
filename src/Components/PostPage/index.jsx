@@ -39,7 +39,6 @@ export const PostPage = () => {
       if (response.ok) {
         const json = await response.json();
         setData(json.photo);
-
       } else {
         console.error('Erro ao carregar os dados:', response.statusText);
       }
@@ -61,12 +60,12 @@ export const PostPage = () => {
   useEffect(() => {
     fetchData()
   }, [])
-
+  
   useEffect(() => {
     const updateWidth = () => {
       setWidthImages(container.current?.scrollWidth - container.current?.offsetWidth);
     };
-
+    
     updateWidth();
   }, [data])
 
@@ -120,12 +119,26 @@ export const PostPage = () => {
                 ''
               )
             }
+            {
+                data.locacao_ou_venda === 'Venda' ?
+                (<p id="venda-aluguel">
+                  {
+                    'Venda'
+                  }
+                </p>)
+                :
+                (<p id="venda-aluguel">
+                  {
+                    'Aluguel'
+                  }
+                </p>)
+              }
             <div className="post-info__title">
-            <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL'
-            })}</h3>
-            <FaInfoCircle onClick={handleModal} />
+              <h3 className="post-price">{Number(data.preco).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              })}</h3>
+              <FaInfoCircle onClick={handleModal} />
             <div className={ modal ? 'modal activeModal' : 'modal' }>
               <div className="modal-inner">
               <FaXmark onClick={handleModal} />
@@ -134,6 +147,23 @@ export const PostPage = () => {
               </div>
             </div>
             </div>
+              <div className="info-down__title">
+                {
+                  data.texto_adicional ?
+                  (
+                    <div className="text-adicional">
+                      {
+                        data.texto_adicional.split('-').map((item) => {
+                          return <p>{item}</p>
+                        })
+                      }
+                    </div>
+                  ) :
+                  (
+                    <p></p>
+                  )
+                }
+              </div>
             <h1 className="post-title">{data.title}</h1>
             <p className="post-locale">
               <FiMapPin />{data.localidade}</p>

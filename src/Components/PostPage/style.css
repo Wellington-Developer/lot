@@ -104,7 +104,22 @@ img {
   gap: 12px;
   align-items: center;
   position: relative;
+  padding-bottom: 4px;
+}
+
+.info-down__title {
   padding-bottom: 30px;
+}
+
+.info-down__title p {
+  font-weight: 500;
+  color: #001781;
+}
+
+#venda-aluguel {
+  color: #3f3f3f;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .modal {

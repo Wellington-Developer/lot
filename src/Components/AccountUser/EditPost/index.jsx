@@ -31,6 +31,7 @@ export const EditPost = () => {
   const informacao_adicional_paragrafo = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
+  const [textoAdicional, setTextoAdicional] = useState([]);
   const { error, loading, request } = useFetch();
   const navigate = useNavigate();
   const [tipo, setTipo] = useState('');
@@ -64,6 +65,7 @@ export const EditPost = () => {
     formData.append('informacao_adicional_paragrafo', informacao_adicional_paragrafo.value);
 
     formData.append('features', features.join(','));
+    formData.append('texto_adicional', textoAdicional);
 
     imgs.forEach((img, index) => {
       formData.append(`img${index + 1}`, img);
@@ -91,7 +93,7 @@ export const EditPost = () => {
   const getFilterPost = () => {
     if (posts) {
       const filteredPost = posts.find(post => post.id == id);
-
+  
       if (filteredPost) {
         nome.setValue(filteredPost.author);
         status_do_imovel.setValue(filteredPost.status_do_imovel);
@@ -110,8 +112,11 @@ export const EditPost = () => {
         metros_totais.setValue(filteredPost.metros_totais);
         informacao_adicional_titulo.setValue(filteredPost.informacao_adicional_titulo);
         informacao_adicional_paragrafo.setValue(filteredPost.informacao_adicional_paragrafo);
-        setFeatures(filteredPost.features.split(','));
-
+  
+        // Verificar se as propriedades existem antes de chamar split
+        setFeatures(filteredPost.features ? filteredPost.features.split(',') : []);
+        setTextoAdicional(filteredPost.texto_adicional ? filteredPost.texto_adicional.split('-') : []);
+  
         setTipo(filteredPost.tipo);
         setStatus(filteredPost.status);
         setLocacaoOuVenda(filteredPost.locacao_ou_venda);
@@ -138,6 +143,13 @@ export const EditPost = () => {
           type="text"
           value={features.join(',')} // Mostrar as features separadas por vírgula
           onChange={(e) => setFeatures(e.target.value.split(','))}
+        />
+        <Input
+          label="Informações abaixo do preço, separe por traço(-)"
+          name="features"
+          type="text"
+          value={textoAdicional.join('-')}
+          onChange={(e) => setTextoAdicional(e.target.value.split('-'))}
         />
         <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa} />
         <Input label="Cidade" name="cidade" type="text" {...cidade} />
